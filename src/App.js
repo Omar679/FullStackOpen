@@ -2,10 +2,10 @@ import { useState } from "react";
 
 const App = () => {
   let [counter, setCounter] = useState(0);
-  setTimeout(() => {
+
+  const handleClick = () => {
     setCounter(counter + 1);
-  }, 1000);
-  console.log("rendering...", counter);
+  };
   const course = {
     name: "Half Stack application development",
     parts: [
@@ -31,6 +31,8 @@ const App = () => {
       <Total parts={course.parts} />
       <Hello name="Umar" age={26} />
       {counter}
+      <button onClick={handleClick}> Plus</button>
+      <button onClick={() => setCounter(0)}>Zero</button>
     </div>
   );
 };
