@@ -1,4 +1,11 @@
+import { useState } from "react";
+
 const App = () => {
+  let [counter, setCounter] = useState(0);
+  setTimeout(() => {
+    setCounter(counter + 1);
+  }, 1000);
+  console.log("rendering...", counter);
   const course = {
     name: "Half Stack application development",
     parts: [
@@ -22,7 +29,24 @@ const App = () => {
       <Header name={course.name} />
       <Content parts={course.parts} />
       <Total parts={course.parts} />
+      <Hello name="Umar" age={26} />
+      {counter}
     </div>
+  );
+};
+const Hello = ({ name, age }) => {
+  const bornyear = () => {
+    const yearnow = new Date().getFullYear();
+    return yearnow - age;
+  };
+
+  return (
+    <>
+      <h1>
+        Hello {name} you are {age} years old
+      </h1>
+      <p>You are probably born in {bornyear()}</p>
+    </>
   );
 };
 const Header = ({ name }) => {
