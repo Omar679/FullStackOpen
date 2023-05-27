@@ -2,9 +2,26 @@ import { useState } from "react";
 
 const App = () => {
   let [counter, setCounter] = useState(0);
+  const [clicks, setClicks] = useState({ left: 0, right: 0 });
+  const [allClicks, setAllClicks] = useState([]);
 
-  const handleClick = () => {
+  const handleLeftClick = () => {
+    const newClicks = {
+      ...clicks,
+      left: clicks.left + 1,
+    };
+    setClicks(newClicks);
+  };
+
+  const handleRightClick = () => {
+    setClicks(setAllClicks.concat("R"), { ...clicks, right: clicks.right + 1 });
+  };
+
+  const increasebyOne = () => {
     setCounter(counter + 1);
+  };
+  const settoZero = () => {
+    setCounter(0);
   };
   const course = {
     name: "Half Stack application development",
@@ -31,8 +48,15 @@ const App = () => {
       <Total parts={course.parts} />
       <Hello name="Umar" age={26} />
       {counter}
-      <button onClick={handleClick}> Plus</button>
-      <button onClick={() => setCounter(0)}>Zero</button>
+      <button onClick={increasebyOne}> Plus</button>
+      <button onClick={settoZero}>Zero</button>
+
+      <p>
+        {clicks.left}
+        <button onClick={handleLeftClick}>Left</button>
+        <button onClick={handleRightClick}>Rigth</button>
+        {clicks.right}
+      </p>
     </div>
   );
 };
