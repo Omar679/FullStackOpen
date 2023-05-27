@@ -24,15 +24,30 @@ const App = () => {
     <>
       <p>
         {right}
-        <button onClick={handleRight}>Right</button>
-        <button onClick={handleLeft}>Left</button>
+        <Button handleclick={handleRight} text="Rigth" />
+        <Button handleclick={handleLeft} text="Left" />
         {left}
-        <button onClick={handleReset}>Reset</button>
+        <Button handleclick={handleReset} text="Reset" />
       </p>
-      {allClicks.join("-")}
-      <p>{total}</p>
+      <p> Total: {total}</p>
+      <History allClicks={allClicks} />
     </>
   );
+};
+
+const History = ({ allClicks }) => {
+  if (allClicks.length == 0) {
+    return (
+      <>
+        <p>The app works by clickinng the buttons</p>
+      </>
+    );
+  }
+
+  return <>Button Press History {allClicks.join(" ")}</>;
+};
+const Button = ({ handleclick, text }) => {
+  return <button onClick={handleclick}>{text}</button>;
 };
 
 export default App;
